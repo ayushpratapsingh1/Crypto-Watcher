@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2a9d8f;
+            margin-bottom: 20px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2a9d8f;
+        }
+
+        table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #264653;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        td {
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price {
+            color: #e76f51;
+            font-weight: bold;
+        }
+
+        .market-cap {
+            color: #2a9d8f;
+        }
+
+        .volume {
+            color: #e9c46a;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            td, th {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Cryptocurrency Data</h1>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Market Cap</h3>
+                <div class="value">${{ total_market_cap }} Trillions</div>
+            </div>
+            <div class="stat-card">
+                <h3>24h Volume</h3>
+                <div class="value">${{ total_volume }} Billions</div>
+            </div>
+            <div class="stat-card">
+                <h3>Bitcoin Dominance</h3>
+                <div class="value">{{ bitcoin_dominance }}%</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    {% if data and data[0] %}
+                        {% for key in data[0].keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for coin in data %}
+                <tr>
+                    {% for value in coin.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="last-updated">Last Updated: {{ updated }}</p>
+        
+        <div class="footer">
+            Made by Ayush
+        </div>
+    </div>
+</body>
+</html>
