@@ -81,7 +81,7 @@ def home():
             except ValueError:
                 print(f"Error converting market cap: {market_cap} for coin: {coin}")
         
-    print("Total Market Cap:", total_market_cap)
+    # print("Total Market Cap:", total_market_cap)
 
     bitcoin_market_cap = next((coin['Market Cap'] for coin in scraped_data if coin['Name'] == 'Bitcoin'), None)
     if bitcoin_market_cap:
