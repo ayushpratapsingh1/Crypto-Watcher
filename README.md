@@ -87,7 +87,7 @@ The webpage displays:
 
 ## Deploying the Application
 - Replit: Upload files to Replit for easy deployment.
-- Heroku: Follow the Heroku guide for deployment.
+- Render: Follow the Render guide for deployment.
 
 ## Troubleshooting
 - ZeroDivisionError: Ensure market cap values are not missing or zero.
