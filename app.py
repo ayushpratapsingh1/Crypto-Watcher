@@ -63,8 +63,12 @@ def scrape_crypto_data():
 def home():
     # Initialize total market cap to 0
     total_market_cap = 0
-    total_volume = sum(float(coin['Volume'].replace('B', '').replace('T', ''))
-                        * (1e9 if 'B' in coin['Volume'] else 1e12) for coin in scraped_data)
+    total_volume = sum(
+    float(coin['Volume'].replace('B', '').replace('T', '').replace('M', '').replace(',', '')) *
+    (1e9 if 'B' in coin['Volume'] else 1e12 if 'T' in coin['Volume'] else 1e6 if 'M' in coin['Volume'] else 1)
+    for coin in scraped_data
+    )
+
     # Loop through each coin and sum its market cap
     for coin in scraped_data:
         market_cap = coin.get('Market Cap', '').strip()
