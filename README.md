@@ -46,8 +46,8 @@ This web app scrapes live cryptocurrency data from Yahoo Finance and displays it
 1. Clone the repository:
 
    ```bash
-   git clone <your-repository-url>
-   cd <project-directory>
+   git clone https://github.com/ayushpratapsingh1/Crypto-Watcher.git
+   cd <Crypto-Watcher>
 2. Create a virtual environment:
    
    ```bash
